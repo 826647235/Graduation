@@ -21,7 +21,7 @@ public class GetPhoto extends HttpServlet {
         String path = null;
         try {
             Connection connection = ConnectSQL.getConnection();
-            String SQL = "select path from transactionphoto where Position = ? and id = ?";
+            String SQL = "select path from transactionPhoto where position = ? and id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setInt(1,Integer.parseInt(position));
             preparedStatement.setInt(2,Integer.parseInt(id));

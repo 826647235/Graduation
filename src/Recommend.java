@@ -11,31 +11,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-
-@WebServlet(name = "GetTran")
-public class GetTran extends HttpServlet {
+@WebServlet(name = "Recommend")
+public class Recommend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         OutputStreamWriter out = new OutputStreamWriter(response.getOutputStream());
-        String tag = request.getParameter("Tag");
-        String position = request.getParameter("Position");
         try {
             Connection connection = ConnectSQL.getConnection();
-            String SQL = "Select * from transaction where tag like ? and id < ? order by id DESC";
+            String SQL = "select * from transaction order by visitTime DESC";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-            preparedStatement.setString(1,"%" + tag + "%");
-            preparedStatement.setInt(2, Integer.parseInt(position));
             ResultSet resultSet = preparedStatement.executeQuery();
-            TranFormat tranFormat = new TranFormat(resultSet, 10);
+            TranFormat tranFormat = new TranFormat(resultSet, 5);
             String tranJson = new Gson().toJson(tranFormat);
             connection.close();
             out.write(tranJson);
         } catch (Exception e) {
-            out.write("false");
+            e.printStackTrace();
         }
-        out.flush();
-        out.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

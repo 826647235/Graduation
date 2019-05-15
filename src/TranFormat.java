@@ -17,12 +17,9 @@ public class TranFormat {
         String date = "";
     }
 
-    public TranFormat(ResultSet resultSet) throws Exception {
-        addTran(resultSet);
-    }
-
-    private void addTran(ResultSet resultSet) throws Exception {
-        while(resultSet.next()) {
+    public TranFormat(ResultSet resultSet, int quantity) throws Exception {
+        int num = 0;
+        while(resultSet.next() && num < quantity) {
             Tran tran = new Tran();
             tran.id = resultSet.getInt("id");
             tran.goodName = resultSet.getString("goods");
@@ -34,6 +31,7 @@ public class TranFormat {
             tran.tel = resultSet.getString("tel");
             tran.date = resultSet.getString("date");
             tranList.add(tran);
+            num++;
         }
     }
 }

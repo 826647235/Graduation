@@ -3,11 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+
     <servlet>
         <servlet-name>Certify</servlet-name>
         <servlet-class>Certify</servlet-class>
     </servlet>
-    
     <servlet-mapping>
         <servlet-name>Certify</servlet-name>
         <url-pattern>/certify</url-pattern>
@@ -17,18 +17,15 @@
         <servlet-name>SavePhoto</servlet-name>
         <servlet-class>SavePhoto</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>SavePhoto</servlet-name>
         <url-pattern>/savePhoto</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>Transaction</servlet-name>
         <servlet-class>Transaction</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Transaction</servlet-name>
         <url-pattern>/transaction</url-pattern>
@@ -38,18 +35,15 @@
         <servlet-name>GetTran</servlet-name>
         <servlet-class>GetTran</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>GetTran</servlet-name>
         <url-pattern>/getTran</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>GetPhoto</servlet-name>
         <servlet-class>GetPhoto</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>GetPhoto</servlet-name>
         <url-pattern>/getPhoto</url-pattern>
@@ -59,9 +53,35 @@
         <servlet-name>Search</servlet-name>
         <servlet-class>Search</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Search</servlet-name>
         <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Test</servlet-name>
+        <servlet-class>Test</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Test</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Visit</servlet-name>
+        <servlet-class>Visit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Visit</servlet-name>
+        <url-pattern>/visit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Delete</servlet-name>
+        <servlet-class>Delete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Delete</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
 </web-app>
