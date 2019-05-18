@@ -84,4 +84,32 @@
         <servlet-name>Delete</servlet-name>
         <url-pattern>/delete</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Recommend</servlet-name>
+        <servlet-class>Recommend</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Recommend</servlet-name>
+        <url-pattern>/recommend</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Collection</servlet-name>
+        <servlet-class>Collection</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Collection</servlet-name>
+        <url-pattern>/collection</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetCollection</servlet-name>
+        <servlet-class>GetCollection</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetCollection</servlet-name>
+        <url-pattern>/getCollection</url-pattern>
+    </servlet-mapping>
+
 </web-app>
