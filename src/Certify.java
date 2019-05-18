@@ -4,7 +4,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
+import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.config.RequestConfig;
@@ -19,10 +22,11 @@ import org.jsoup.select.Elements;
 public class Certify extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
+        response.setContentType("text/html;charset=utf-8");
         String userName = request.getParameter("UserName");
         String password = request.getParameter("Password");
+        String wechat = request.getParameter("WeChat");
         String code = request.getParameter("Code");
-        response.setContentType("text/html;charset=utf-8");
         PrintWriter out = response.getWriter();
         RequestConfig requestConfig = RequestConfig.custom()
                 .setConnectTimeout(5000)
@@ -47,7 +51,22 @@ public class Certify extends HttpServlet {
             } else {
                 String name = nameElement.get(0).ownText();
                 String college = collegeElement.get(0).ownText();
-                out.write(name + "      " +college);
+                try {
+                    Connection connection = ConnectSQL.getConnection();
+                    String SQL = "insert into account VALUES (?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+                    preparedStatement.setString(1, wechat);
+                    preparedStatement.setString(2, userName);
+                    preparedStatement.setString(3, password);
+                    preparedStatement.setString(4, name);
+                    preparedStatement.setString(5, college);
+                    preparedStatement.executeUpdate();
+                    connection.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Account account = new Account(wechat, userName, password, name, college);
+                out.write(new Gson().toJson(account));
             }
         } else {
             System.out.println("请求失败");
