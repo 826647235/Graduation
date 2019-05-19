@@ -15,6 +15,8 @@ public class TranFormat {
         String seller = "";
         String tel = "";
         String date = "";
+        int isFinish = 0;
+        int visitTime = 0;
     }
 
     public TranFormat(ResultSet resultSet, int quantity) throws Exception {
@@ -30,6 +32,8 @@ public class TranFormat {
             tran.seller = resultSet.getString("seller");
             tran.tel = resultSet.getString("tel");
             tran.date = resultSet.getString("date");
+            tran.isFinish = resultSet.getInt("isFinish");
+            tran.visitTime = resultSet.getInt("visitTime");
             tranList.add(tran);
             num++;
         }

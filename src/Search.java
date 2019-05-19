@@ -21,7 +21,7 @@ public class Search extends HttpServlet {
         String position = request.getParameter("Position");
         try {
             Connection connection = ConnectSQL.getConnection();
-            String SQL = "Select * from transaction where (goods like ? or description like ?) and isFinish != 0 and id < ? order by id DESC";
+            String SQL = "Select * from transaction where (goods like ? or description like ?) and isFinish = 0 and id < ? order by id DESC";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1,"%" + field + "%");
             preparedStatement.setString(2,"%" + field + "%");

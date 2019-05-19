@@ -22,7 +22,7 @@ public class GetTran extends HttpServlet {
         String position = request.getParameter("Position");
         try {
             Connection connection = ConnectSQL.getConnection();
-            String SQL = "Select * from transaction where tag like ? and id < ? order by id DESC";
+            String SQL = "Select * from transaction where tag like ? and id < ? and isFinish = 0 order by id DESC";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1,"%" + tag + "%");
             preparedStatement.setInt(2, Integer.parseInt(position));
