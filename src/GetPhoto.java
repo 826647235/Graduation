@@ -16,7 +16,7 @@ public class GetPhoto extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         OutputStream os = response.getOutputStream();
-        String id = request.getParameter("id");
+        String id = request.getParameter("Id");
         String position = request.getParameter("Position");
         String path = null;
         try {
