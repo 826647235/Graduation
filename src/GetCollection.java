@@ -20,7 +20,7 @@ public class GetCollection extends HttpServlet {
         String account = request.getParameter("Account");
         try {
             Connection connection = ConnectSQL.getConnection();
-            String SQL = "select * from transaction where id = (select id from collection where account = ?)";
+            String SQL = "select * from transaction where id = (select id from collection where account = ? order by collectId DESC)";
             PreparedStatement preparedStatement = connection.prepareStatement(SQL);
             preparedStatement.setString(1,account);
             ResultSet resultSet = preparedStatement.executeQuery();

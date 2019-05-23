@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 
 @WebServlet(name = "SavePhoto")
@@ -30,24 +29,22 @@ public class SavePhoto extends HttpServlet {
                 Connection connection = ConnectSQL.getConnection();
                 PreparedStatement preparedStatement;
                 String fileName;
-                String type;
+                String position;
                 String id;
-                int position = 1;
                 List<FileItem> items = upload.parseRequest(request);
                 for (FileItem fileItem : items) {
-                     fileName = fileItem.getName();
+                    fileName = fileItem.getName();
                     String[] message = fileName.split("_");
-                    type = message[0];
-                    id = message[1];
-                    File file = new File("C:\\picture\\" + type, fileName);
+                    id = message[0];
+                    position = message[1];
+                    File file = new File("C:\\picture\\transaction", fileName);
                     fileItem.write(file);
-                    String SQL = "insert into " + type + "Photo values (?, ?, ?)";
+                    String SQL = "insert into transactionPhoto values (?, ?, ?)";
                     preparedStatement = connection.prepareStatement(SQL);
                     preparedStatement.setInt(1, Integer.parseInt(id));
-                    preparedStatement.setInt(2, position);
+                    preparedStatement.setInt(2, Integer.parseInt(position));
                     preparedStatement.setString(3, file.getPath());
                     preparedStatement.executeUpdate();
-                    position++;
                 }
                 connection.close();
                 out.write("success");

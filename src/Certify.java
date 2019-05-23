@@ -39,7 +39,6 @@ public class Certify extends HttpServlet {
         HttpGet get = new HttpGet(url);
         get.setConfig(requestConfig);
         HttpResponse httpResponse = client.execute(get);
-        System.out.println(userName + " " + password);
         if (httpResponse.getStatusLine().getStatusCode() == 200) {
             HttpEntity resEntity = httpResponse.getEntity();
             String message = EntityUtils.toString(resEntity, "utf-8");

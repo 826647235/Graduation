@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 @WebServlet(name = "Transaction")
 public class Transaction extends HttpServlet {
@@ -36,9 +37,15 @@ public class Transaction extends HttpServlet {
             preparedStatement.setString(7, tel);
             preparedStatement.setString(8, date);
             preparedStatement.executeUpdate();
+            SQL = "select MAX(id) from transaction";
+            preparedStatement = connection.prepareStatement(SQL);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()) {
+                out.write(resultSet.getInt("id"));
+            } else {
+                out.write("false");
+            }
             connection.close();
-            out.write("success");
-
         } catch (Exception e) {
             e.printStackTrace();
             out.write("false");

@@ -28,7 +28,7 @@ public class TranFormat {
             tran.tag = resultSet.getString("tag");
             tran.description = resultSet.getString("description");
             tran.photoNum = resultSet.getInt("photoNum");
-            tran.price = resultSet.getDouble("pirce");
+            tran.price = resultSet.getDouble("price");
             tran.seller = resultSet.getString("seller");
             tran.tel = resultSet.getString("tel");
             tran.date = resultSet.getString("date");
